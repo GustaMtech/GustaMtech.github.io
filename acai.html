@@ -2,68 +2,346 @@
 <html lang="pt-BR">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Catálogo de Açaí</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <link rel="stylesheet" href="css/style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Catálogo completo de Açaí - Açaí Express. Tradicional, Especial, Frutas e Combos.">
+  <title>Catálogo de Açaí | Açaí Express</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800;900&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  
+  <link rel="stylesheet" href="css/style.css">
+
+  <style>
+    .catalog-header {
+      background: linear-gradient(135deg, var(--primary-dark), var(--primary-color));
+      color: #fff;
+      padding: 3.5rem 1.5rem;
+      text-align: center;
+    }
+    .filters-bar {
+      max-width: 1200px;
+      margin: 2rem auto 0;
+      padding: 0 1.5rem;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+    }
+    .search-input {
+      padding: 0.75rem 1.2rem;
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-full);
+      font-size: 0.95rem;
+      width: 100%;
+      max-width: 320px;
+      outline: none;
+    }
+    .filter-chips {
+      display: flex;
+      gap: 0.5rem;
+      overflow-x: auto;
+      padding-bottom: 0.5rem;
+    }
+    .chip {
+      padding: 0.5rem 1.2rem;
+      border-radius: var(--radius-full);
+      background: #eee;
+      cursor: pointer;
+      font-weight: 600;
+      font-size: 0.88rem;
+      white-space: nowrap;
+      transition: var(--transition);
+    }
+    .chip.active, .chip:hover {
+      background: var(--primary-color);
+      color: #fff;
+    }
+    /* Carrinho Drawer */
+    .cart-drawer {
+      position: fixed;
+      top: 0;
+      right: -100%;
+      width: 100%;
+      max-width: 380px;
+      height: 100%;
+      background: #fff;
+      box-shadow: -5px 0 25px rgba(0,0,0,0.25);
+      z-index: 2000;
+      transition: 0.35s ease;
+      display: flex;
+      flex-direction: column;
+    }
+    .cart-drawer.open {
+      right: 0;
+    }
+    .cart-backdrop {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.5);
+      z-index: 1999;
+      display: none;
+    }
+    .cart-backdrop.show {
+      display: block;
+    }
+    .cart-floating-btn {
+      position: fixed;
+      bottom: 25px;
+      right: 25px;
+      background: var(--primary-color);
+      color: #fff;
+      border: 3px solid var(--accent-gold);
+      padding: 0.9rem 1.4rem;
+      border-radius: var(--radius-full);
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      font-weight: 700;
+      box-shadow: var(--shadow-lg);
+      cursor: pointer;
+      z-index: 999;
+    }
+  </style>
 </head>
 
 <body>
-    <header class="d-flex justify-content-between align-items-center p-3 bg-purple text-white">
-        <div class="logo d-flex align-items-center">
-            <img src="../img/logo.webp" alt="" width="100"> <span class="ml-2">Açaí Express</span>
+  <!-- Header -->
+  <header>
+    <div class="header-container">
+      <a href="index.html" class="logo">
+        <img src="img/logo.webp" alt="Logo Açaí Express" onerror="this.src='https://cdn-icons-png.flaticon.com/512/765/765610.png'">
+        <span>Açaí Express</span>
+      </a>
+
+      <nav class="navbar">
+        <a class="nav-link" href="index.html">Início</a>
+        <a class="nav-link active" href="acai.html">Catálogo de Açaí</a>
+        <a class="nav-link" href="cupuacu.html">Catálogo de Cupuaçu</a>
+        <a class="nav-link" href="sobre.html">Sobre Mim</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="catalog-header">
+      <h1 style="font-family: var(--font-title); font-size: clamp(2rem, 4vw, 3rem); color: var(--accent-gold);">
+        Catálogo Exclusivo de Açaí
+      </h1>
+      <p style="max-width: 600px; margin: 0.5rem auto 0; color: rgba(255,255,255,0.85);">
+        Cremoso, saboroso e com os adicionais que você mais ama. Escolha o seu e adicione ao carrinho!
+      </p>
+    </section>
+
+    <!-- Barra de Filtros e Pesquisa -->
+    <div class="filters-bar">
+      <div class="filter-chips">
+        <span class="chip active" onclick="filterItems('todos', this)">Todos</span>
+        <span class="chip" onclick="filterItems('tradicional', this)">Tradicionais</span>
+        <span class="chip" onclick="filterItems('especial', this)">Especiais & Barcas</span>
+      </div>
+      <input type="text" class="search-input" id="searchBox" placeholder="Buscar açaí ou acompanhamento..." onkeyup="searchProducts()">
+    </div>
+
+    <!-- Grid do Catálogo -->
+    <section class="promocoes" id="productsGrid">
+      
+      <!-- Item 1: 350ml -->
+      <div class="card" data-category="tradicional" data-name="Açaí Tradicional 350ml">
+        <img class="imagem-1" src="img/acai-tradicional.png" alt="Açaí 350ml" onerror="this.src='https://images.unsplash.com/photo-1590301157890-4810ed352733?w=400&auto=format&fit=crop&q=80'">
+        <h3 class="card-title">Açaí Tradicional 350ml</h3>
+        <p class="card-text"><strong>Acompanha:</strong> Granola crocante, banana ou morango, amendoim torrado e leite Ninho.</p>
+        <div class="card-preco">R$ 10,00</div>
+        <button class="btn-primary" onclick="addToCart('Açaí Tradicional 350ml', 10.00)">
+          <i class="fa-solid fa-cart-plus"></i> Adicionar
+        </button>
+      </div>
+
+      <!-- Item 2: 500ml -->
+      <div class="card" data-category="tradicional" data-name="Açaí Tradicional 500ml">
+        <img class="imagem-1" src="img/acai-tradicional.png" alt="Açaí 500ml" onerror="this.src='https://images.unsplash.com/photo-1590301157890-4810ed352733?w=400&auto=format&fit=crop&q=80'">
+        <h3 class="card-title">Açaí Tradicional 500ml</h3>
+        <p class="card-text"><strong>Acompanha:</strong> Granola crocante, frutas frescas da estação, amendoim e leite Ninho em dobro.</p>
+        <div class="card-preco">R$ 15,00</div>
+        <button class="btn-primary" onclick="addToCart('Açaí Tradicional 500ml', 15.00)">
+          <i class="fa-solid fa-cart-plus"></i> Adicionar
+        </button>
+      </div>
+
+      <!-- Item 3: 750ml -->
+      <div class="card" data-category="tradicional" data-name="Açaí Tradicional 750ml">
+        <img class="imagem-1" src="img/acai-tradicional.png" alt="Açaí 750ml" onerror="this.src='https://images.unsplash.com/photo-1590301157890-4810ed352733?w=400&auto=format&fit=crop&q=80'">
+        <h3 class="card-title">Açaí Tradicional 750ml</h3>
+        <p class="card-text"><strong>Tamanho Família:</strong> Granola, frutas à vontade, amendoim e camadas generosas de leite Ninho.</p>
+        <div class="card-preco">R$ 20,00</div>
+        <button class="btn-primary" onclick="addToCart('Açaí Tradicional 750ml', 20.00)">
+          <i class="fa-solid fa-cart-plus"></i> Adicionar
+        </button>
+      </div>
+
+      <!-- Item 4: Casadinho -->
+      <div class="card" data-category="especial" data-name="Casadinho Açaí e Cupuaçu 500ml">
+        <img class="imagem-1" src="img/acai-cupuacu.png" alt="Casadinho" onerror="this.src='https://images.unsplash.com/photo-1590301157890-4810ed352733?w=400&auto=format&fit=crop&q=80'">
+        <h3 class="card-title">Casadinho 500ml</h3>
+        <p class="card-text"><strong>O par perfeito:</strong> Metade açaí tradicional e metade cupuaçu cremoso com leite condensado e paçoca.</p>
+        <div class="card-preco">R$ 16,00</div>
+        <button class="btn-primary" onclick="addToCart('Casadinho 500ml', 16.00)">
+          <i class="fa-solid fa-cart-plus"></i> Adicionar
+        </button>
+      </div>
+
+      <!-- Item 5: Barca Especial -->
+      <div class="card" data-category="especial" data-name="Super Barca Especial 1 Litro">
+        <img class="imagem-1" src="img/acai-tradicional.png" alt="Barca de Açaí" onerror="this.src='https://images.unsplash.com/photo-1590301157890-4810ed352733?w=400&auto=format&fit=crop&q=80'">
+        <h3 class="card-title">Super Barca 1 Litro</h3>
+        <p class="card-text"><strong>Para Compartilhar:</strong> 1L de açaí, banana, morango, kiwi, Nutella, leite Ninho e tubetes crocantes.</p>
+        <div class="card-preco">R$ 38,00</div>
+        <button class="btn-primary" onclick="addToCart('Super Barca 1 Litro', 38.00)">
+          <i class="fa-solid fa-cart-plus"></i> Adicionar
+        </button>
+      </div>
+    </section>
+  </main>
+
+  <!-- Botão Flutuante do Carrinho -->
+  <button class="cart-floating-btn" onclick="toggleCart(true)">
+    <i class="fa-solid fa-bag-shopping"></i>
+    <span id="cartCount">0 itens</span> | <span id="cartMiniTotal">R$ 0,00</span>
+  </button>
+
+  <!-- Drawer Lateral do Carrinho -->
+  <div class="cart-backdrop" id="cartBackdrop" onclick="toggleCart(false)"></div>
+  <aside class="cart-drawer" id="cartDrawer">
+    <div style="padding: 1.5rem; background: var(--primary-dark); color: #fff; display: flex; justify-content: space-between; align-items: center;">
+      <h3 style="font-size: 1.1rem; font-family: var(--font-title);"><i class="fa-solid fa-bag-shopping" style="color: var(--accent-gold);"></i> Seu Carrinho</h3>
+      <button onclick="toggleCart(false)" style="color: #fff; font-size: 1.2rem;"><i class="fa-solid fa-xmark"></i></button>
+    </div>
+
+    <div id="cartItemsList" style="flex: 1; padding: 1.5rem; overflow-y: auto; display: flex; flex-direction: column; gap: 1rem;">
+      <p style="text-align: center; color: var(--text-muted); margin-top: 3rem;">Seu carrinho está vazio.</p>
+    </div>
+
+    <div style="padding: 1.5rem; background: #faf7fc; border-top: 1px solid var(--border-color);">
+      <div style="display: flex; justify-content: space-between; font-weight: 700; font-size: 1.2rem; margin-bottom: 1rem;">
+        <span>Total:</span>
+        <span id="cartTotal" style="color: var(--primary-color);">R$ 0,00</span>
+      </div>
+      <button class="btn-primary btn-whatsapp" style="width: 100%;" onclick="checkoutWhatsApp()">
+        <i class="fa-brands fa-whatsapp"></i> Enviar Pedido via WhatsApp
+      </button>
+    </div>
+  </aside>
+
+  <!-- Rodapé -->
+  <footer>
+    <p>&copy; 2026 Açaí Express. Desenvolvido por Gustavo Marques Silva.</p>
+  </footer>
+
+  <!-- Scripts do Catálogo e Carrinho -->
+  <script>
+    let cart = JSON.parse(localStorage.getItem('acai_express_cart')) || [];
+
+    function updateCartUI() {
+      localStorage.setItem('acai_express_cart', JSON.stringify(cart));
+      const list = document.getElementById('cartItemsList');
+      const count = document.getElementById('cartCount');
+      const miniTotal = document.getElementById('cartMiniTotal');
+      const totalDisplay = document.getElementById('cartTotal');
+
+      const totalItems = cart.reduce((acc, item) => acc + item.quantity, 0);
+      const totalAmount = cart.reduce((acc, item) => acc + (item.price * item.quantity), 0);
+
+      count.innerText = `${totalItems} ${totalItems === 1 ? 'item' : 'itens'}`;
+      miniTotal.innerText = `R$ ${totalAmount.toFixed(2).replace('.', ',')}`;
+      totalDisplay.innerText = `R$ ${totalAmount.toFixed(2).replace('.', ',')}`;
+
+      if (cart.length === 0) {
+        list.innerHTML = `<p style="text-align: center; color: var(--text-muted); margin-top: 3rem;">Seu carrinho está vazio.</p>`;
+        return;
+      }
+
+      list.innerHTML = cart.map((item, index) => `
+        <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #eee; padding-bottom: 0.75rem;">
+          <div>
+            <h4 style="font-size: 0.95rem; font-weight: 700; color: var(--primary-color);">${item.name}</h4>
+            <span style="font-size: 0.85rem; color: var(--text-muted);">R$ ${item.price.toFixed(2).replace('.', ',')} un</span>
+          </div>
+          <div style="display: flex; align-items: center; gap: 0.5rem;">
+            <button onclick="changeQty(${index}, -1)" style="width: 25px; height: 25px; background: #eee; border-radius: 4px; font-weight: 700;">-</button>
+            <span style="font-weight: 600; font-size: 0.9rem;">${item.quantity}</span>
+            <button onclick="changeQty(${index}, 1)" style="width: 25px; height: 25px; background: #eee; border-radius: 4px; font-weight: 700;">+</button>
+          </div>
         </div>
-        <nav class="navbar">
-            <a class="nav-link text-white" href="index.html">Início</a>
-            <a class="nav-link text-white" href="acai.html">Catálogo de Açaí</a>
-            <a class="nav-link text-white" href="cupuacu.html">Catálogo de Cupuaçu</a>
-            <a class="nav-link text-white" href="sobre.html">Sobre Mim</a>
-        </nav>
-    </header>
+      `).join('');
+    }
 
-    <main class="p-5">
-        <h1 class="text-warning text-center">Catálogo de Açaí</h1>
-        <div class="row">
-            <div class="col-md-4 text-center">
-                <div class="card">
-                    <img src="img/acai-tradicional.png">
-                    <div class="card-body">
-                        <h5 class="card-title"> Açaí Tradicional 350ml </h5>
-                        <p class="card-text"> Adicionais: Granola, frutas, amendoim e leite ninho. </p>
-                        <p> Preço: R$ 10,00 </p>
-                    </div>
-                </div>
-            </div>
+    function addToCart(name, price) {
+      const existing = cart.find(i => i.name === name);
+      if (existing) {
+        existing.quantity += 1;
+      } else {
+        cart.push({ name, price, quantity: 1 });
+      }
+      updateCartUI();
+      toggleCart(true);
+    }
 
-            <div class="col-md-4 text-center">
-                <div class="card">
-                    <img src="img/acai-tradicional.png">
-                    <div class="card-body">
-                        <h5 class="card-title"> Açaí Tradicional 500ml </h5>
-                        <p class="card-text"> Adicionais: Granola, frutas, amendoim e leite ninho. </p>
-                        <p> Preço: R$ 15,00 </p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4 text-center">
-                <div class="card">
-                    <img src="img/acai-tradicional.png">
-                    <div class="card-body">
-                        <h5 class="card-title"> Açaí Tradicional 750ml </h5>
-                        <p class="card-text"> Adicionais: Granola, frutas, amendoim e leite ninho. </p>
-                        <p> Preço: R$ 20,00 </p>
-                    </div>
-                </div>
-            </div>
-              
+    function changeQty(index, delta) {
+      cart[index].quantity += delta;
+      if (cart[index].quantity <= 0) {
+        cart.splice(index, 1);
+      }
+      updateCartUI();
+    }
 
-        </div>
-    </main>
+    function toggleCart(open) {
+      document.getElementById('cartDrawer').classList.toggle('open', open);
+      document.getElementById('cartBackdrop').classList.toggle('show', open);
+    }
 
-    <footer>
-        <p>&copy; 2024 Venda de Açaí e Cupuaçu. Todos os direitos reservados.</p>
-    </footer>
+    function filterItems(category, chipElement) {
+      document.querySelectorAll('.filter-chips .chip').forEach(c => c.classList.remove('active'));
+      chipElement.classList.add('active');
+
+      const cards = document.querySelectorAll('#productsGrid .card');
+      cards.forEach(card => {
+        if (category === 'todos' || card.getAttribute('data-category') === category) {
+          card.style.display = 'flex';
+        } else {
+          card.style.display = 'none';
+        }
+      });
+    }
+
+    function searchProducts() {
+      const query = document.getElementById('searchBox').value.toLowerCase();
+      const cards = document.querySelectorAll('#productsGrid .card');
+
+      cards.forEach(card => {
+        const text = card.innerText.toLowerCase();
+        card.style.display = text.includes(query) ? 'flex' : 'none';
+      });
+    }
+
+    function checkoutWhatsApp() {
+      if (cart.length === 0) return alert('Adicione pelo menos um item antes de finalizar!');
+
+      const phone = "5561986868686";
+      let itemsText = cart.map(i => `• ${i.quantity}x ${i.name} (R$ ${(i.price * i.quantity).toFixed(2).replace('.', ',')})`).join('\n');
+      const totalAmount = cart.reduce((acc, item) => acc + (item.price * item.quantity), 0);
+
+      const message = ` Olá! Gostaria de fazer o seguinte pedido de Açaí:\n\n${itemsText}\n\n` +
+        ` *Total:* R$ ${totalAmount.toFixed(2).replace('.', ',')}\n\n` +
+        `Poderiam me informar a taxa de entrega e tempo estimado?`;
+
+      window.open(`https://wa.me/${phone}?text=${encodeURIComponent(message)}`, '_blank');
+    }
+
+    // Carregar carrinho ao iniciar
+    updateCartUI();
+  </script>
 </body>
-
 </html>
