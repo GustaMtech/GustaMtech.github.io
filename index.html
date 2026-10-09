@@ -2,64 +2,352 @@
 <html lang="pt-BR">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Venda de Açaí e Cupuaçu</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <link rel="stylesheet" href="css/style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Açaí Express - O melhor açaí e cupuaçu artesanal da região. Peça online direto pelo WhatsApp.">
+  <title>Açaí Express | Sabor Artesanal & Energia Natural</title>
+
+  <!-- Google Fonts & Ícones FontAwesome -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800;900&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  
+  <!-- Estilos Principais -->
+  <link rel="stylesheet" href="css/style.css">
+  
+  <style>
+    /* Estilos inline adicionais para a Home */
+    .hero-badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      margin-top: 1.5rem;
+    }
+    .badge-pill {
+      background: rgba(255, 255, 255, 0.15);
+      backdrop-filter: blur(5px);
+      padding: 0.4rem 0.9rem;
+      border-radius: var(--radius-full);
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: #fff;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+    .customizer-box {
+      background: var(--bg-card);
+      border-radius: var(--radius-lg);
+      padding: 2.5rem;
+      box-shadow: var(--shadow-lg);
+      max-width: 900px;
+      margin: -3rem auto 4rem;
+      position: relative;
+      z-index: 10;
+      border: 1px solid var(--border-color);
+    }
+    .option-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+      gap: 0.75rem;
+      margin-top: 0.5rem;
+    }
+    .option-btn {
+      padding: 0.75rem 0.5rem;
+      border: 2px solid var(--border-color);
+      border-radius: var(--radius-md);
+      text-align: center;
+      cursor: pointer;
+      font-weight: 600;
+      font-size: 0.9rem;
+      transition: var(--transition);
+      background: #fff;
+    }
+    .option-btn:hover, .option-btn.selected {
+      border-color: var(--primary-light);
+      background: #fdf6ff;
+      color: var(--primary-color);
+    }
+    .toppings-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+      gap: 0.6rem;
+    }
+    .topping-checkbox {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.6rem;
+      border: 1px solid #f0e6f5;
+      border-radius: var(--radius-sm);
+      font-size: 0.88rem;
+      cursor: pointer;
+      background: #fff;
+    }
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 1.5rem;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 2rem 1.5rem 4rem;
+    }
+    .feature-item {
+      text-align: center;
+      padding: 2rem;
+      background: #fff;
+      border-radius: var(--radius-md);
+      box-shadow: var(--shadow-sm);
+      border-bottom: 3px solid var(--accent-gold);
+    }
+    .feature-item i {
+      font-size: 2.2rem;
+      color: var(--primary-light);
+      margin-bottom: 1rem;
+    }
+  </style>
 </head>
 
 <body>
-    <header class="d-flex justify-content-between align-items-center p-3 bg-purple text-white">
-        <div class="logo d-flex align-items-center">
-            <img src="img/logo.webp" alt="" width="100"> <span class="ml-2">Açaí Express</span>
+  <!-- Cabeçalho -->
+  <header>
+    <div class="header-container">
+      <a href="index.html" class="logo">
+        <img src="img/logo.webp" alt="Logo Açaí Express" onerror="this.src='https://cdn-icons-png.flaticon.com/512/765/765610.png'">
+        <span>Açaí Express</span>
+      </a>
+
+      <nav class="navbar" id="navbarMenu">
+        <a class="nav-link active" href="index.html">Início</a>
+        <a class="nav-link" href="acai.html">Catálogo de Açaí</a>
+        <a class="nav-link" href="cupuacu.html">Catálogo de Cupuaçu</a>
+        <a class="nav-link" href="sobre.html">Sobre Mim</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <!-- Seção Hero Principal -->
+    <section class="secao">
+      <div class="secao-container">
+        <div>
+          <span style="color: var(--accent-gold); font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; font-size: 0.85rem;">
+            100% Artesanal & Natural
+          </span>
+          <h1 id="h1-menu">O Verdadeiro Sabor da Amazônia</h1>
+          <p id="paragrafo-menu">
+            Açaí cremoso de alta densidade e o mais puro cupuaçu. Selecionamos os melhores frutos para garantir energia e sabor inigualáveis no seu dia.
+          </p>
+          
+          <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+            <a href="acai.html" class="btn-primary">
+              <i class="fa-solid fa-utensils"></i> Ver Catálogo Completo
+            </a>
+            <a href="#monte-seu-copo" class="btn-primary" style="background: transparent; color: #fff; border: 2px solid #fff;">
+              <i class="fa-solid fa-wand-magic-sparkles"></i> Montar do Meu Jeito
+            </a>
+          </div>
+
+          <div class="hero-badges">
+            <span class="badge-pill"><i class="fa-solid fa-bolt" style="color: var(--accent-gold);"></i> Energia Pura</span>
+            <span class="badge-pill"><i class="fa-solid fa-leaf" style="color: #4cd137;"></i> Zero Xarope Artificial</span>
+            <span class="badge-pill"><i class="fa-solid fa-motorcycle" style="color: var(--accent-gold);"></i> Entrega Rápida</span>
+          </div>
         </div>
-        <nav class="navbar">
-            <a class="nav-link text-white" href="index.html">Início</a>
-            <a class="nav-link text-white" href="acai.html">Catálogo de Açaí</a>
-            <a class="nav-link text-white" href="cupuacu.html">Catálogo de Cupuaçu</a>
-            <a class="nav-link text-white" href="sobre.html">Sobre Mim</a>
-        </nav>
-    </header>
 
-    <main>
-        <section class="secao">
+        <div style="text-align: center;">
+          <img src="img/logo.webp" alt="Tigela Especial de Açaí" onerror="this.src='https://images.unsplash.com/photo-1590301157890-4810ed352733?w=600&auto=format&fit=crop&q=80'">
+        </div>
+      </div>
+    </section>
+
+    <!-- Monte seu Copo Interativo -->
+    <section id="monte-seu-copo" style="padding: 0 1.5rem;">
+      <div class="customizer-box">
+        <div style="text-align: center; margin-bottom: 2rem;">
+          <h2 style="font-family: var(--font-title); font-size: 1.8rem; color: var(--primary-color);">
+            <i class="fa-solid fa-sliders" style="color: var(--accent-gold);"></i> Monte seu Copo em Segundos
+          </h2>
+          <p style="color: var(--text-muted); font-size: 0.95rem;">
+            Personalize a base, tamanho e acompanhamentos. O valor atualiza em tempo real e você finaliza no WhatsApp!
+          </p>
+        </div>
+
+        <form id="cupBuilderForm" onsubmit="event.preventDefault(); sendCustomOrder();">
+          <!-- Passo 1: Base -->
+          <div style="margin-bottom: 1.5rem;">
+            <label style="font-weight: 700; color: var(--primary-color); display: block; margin-bottom: 0.4rem;">
+              1. Escolha a sua Base:
+            </label>
+            <div class="option-grid">
+              <div class="option-btn selected" onclick="selectBase(this, 'Açaí Tradicional')">Açaí Puro</div>
+              <div class="option-btn" onclick="selectBase(this, 'Cupuaçu Cremoso')">Cupuaçu Puro</div>
+              <div class="option-btn" onclick="selectBase(this, 'Casadinho (Açaí + Cupuaçu)')">Casadinho (50/50)</div>
+            </div>
+          </div>
+
+          <!-- Passo 2: Tamanho -->
+          <div style="margin-bottom: 1.5rem;">
+            <label style="font-weight: 700; color: var(--primary-color); display: block; margin-bottom: 0.4rem;">
+              2. Escolha o Tamanho:
+            </label>
+            <div class="option-grid">
+              <div class="option-btn selected" onclick="selectSize(this, '350ml', 10.00)">350ml - R$ 10,00</div>
+              <div class="option-btn" onclick="selectSize(this, '500ml', 15.00)">500ml - R$ 15,00</div>
+              <div class="option-btn" onclick="selectSize(this, '750ml', 20.00)">750ml - R$ 20,00</div>
+            </div>
+          </div>
+
+          <!-- Passo 3: Adicionais Gratuitos -->
+          <div style="margin-bottom: 1.5rem;">
+            <label style="font-weight: 700; color: var(--primary-color); display: block; margin-bottom: 0.4rem;">
+              3. Adicionais Tradicionais (Selecione quantos quiser):
+            </label>
+            <div class="toppings-grid">
+              <label class="topping-checkbox"><input type="checkbox" value="Granola Artesanal" onchange="updateTotal()"> Granola Artesanal</label>
+              <label class="topping-checkbox"><input type="checkbox" value="Banana Fatiada" onchange="updateTotal()"> Banana Fatiada</label>
+              <label class="topping-checkbox"><input type="checkbox" value="Morango Fresco" onchange="updateTotal()"> Morango Fresco</label>
+              <label class="topping-checkbox"><input type="checkbox" value="Leite em Pó Ninho" onchange="updateTotal()"> Leite Ninho</label>
+              <label class="topping-checkbox"><input type="checkbox" value="Leite Condensado" onchange="updateTotal()"> Leite Condensado</label>
+              <label class="topping-checkbox"><input type="checkbox" value="Amendoim Torrado" onchange="updateTotal()"> Amendoim Torrado</label>
+              <label class="topping-checkbox"><input type="checkbox" value="Mel Puro" onchange="updateTotal()"> Mel de Abelha</label>
+              <label class="topping-checkbox"><input type="checkbox" value="Paçoca Rolha" onchange="updateTotal()"> Paçoca</label>
+            </div>
+          </div>
+
+          <!-- Resumo e Envio -->
+          <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem; border-top: 2px dashed #eeddf2; padding-top: 1.5rem;">
             <div>
-                <h1 id="h1-menu" class="display-4" style="color: yellow;">Bem-vindo à nossa loja!</h1>
-                <p id="paragrafo-menu">Aproveite o melhor açaí e cupuaçu da região!</p>
+              <span style="font-size: 0.9rem; color: var(--text-muted); display: block;">Valor Total:</span>
+              <span id="customTotalDisplay" style="font-size: 1.8rem; font-weight: 800; color: var(--primary-color);">R$ 10,00</span>
             </div>
-            <img src="img/logo.webp" alt="">
-        </section>
+            <button type="submit" class="btn-primary btn-whatsapp" style="padding: 0.9rem 2rem;">
+              <i class="fa-brands fa-whatsapp" style="font-size: 1.3rem;"></i> Pedir Este Copo Agora
+            </button>
+          </div>
+        </form>
+      </div>
+    </section>
 
-        <section class="promocoes">
-            <div class="promocao-card">
-                <img class="imagem-1" src="img/acai-tradicional.png" alt="">
-                <h3>Açaí Tradicional</h3>
-                <p>Clássico que nunca sai de moda!</p>
-            </div>
-            <div class="promocao-card">
-                <img class="imagem-1" src="img/acai-frutas.png" alt="">
-                <h3>Açaí com Frutas</h3>
-                <p>Uma mistura perfeita!</p>
-            </div>
-            <div class="promocao-card">
-                <img class="imagem-1" src="img/cupuacu-tradicional.png" alt="">
-                <h3>Cupuaçu Tradicional</h3>
-                <p>Refrescante e delicioso!</p>
-            </div>
-        </section>
+    <!-- Destaques Rápidos -->
+    <div style="text-align: center; margin-bottom: 1rem;">
+      <h2 style="font-family: var(--font-title); font-size: 2.2rem; color: var(--primary-color);">Os Queridinhos do Público</h2>
+      <p style="color: var(--text-muted);">Prontos para pedir, sem complicação</p>
+    </div>
 
-        <section class="especial">
-            
-            <img src="img/acai-cupuacu.png" alt="" style="max-width: 400px;">
-            <h2 style="color: yellow;">Especial: Açaí com Cupuaçu</h2>
-            <p class="ultimo-paragrafo" style="color: white;" > Uma mistura única! </p>
-        </section>
-    </main>
+    <section class="promocoes">
+      <div class="promocao-card">
+        <img class="imagem-1" src="img/acai-tradicional.png" alt="Açaí Tradicional" onerror="this.src='https://images.unsplash.com/photo-1590301157890-4810ed352733?w=400&auto=format&fit=crop&q=80'">
+        <h3>Açaí Tradicional</h3>
+        <p>A receita clássica batida na medida certa com xarope de guaraná e textura aveludada.</p>
+        <span class="card-preco">A partir de R$ 10,00</span>
+        <a href="acai.html" class="btn-primary" style="width: 100%;">Ver Tamanhos</a>
+      </div>
 
-    <footer>
-        <p>&copy; 2024 Venda de Açaí e Cupuaçu. Todos os direitos reservados.</p>
-    </footer>
+      <div class="promocao-card">
+        <img class="imagem-1" src="img/cupuacu-tradicional.png" alt="Cupuaçu Tradicional" onerror="this.src='https://receitanatureba.com/wp-content/uploads/2025/10/creme-de-cupuacu.jpg'">
+        <h3>Cupuaçu Cremoso</h3>
+        <p>Sabor marcante, levemente ácido e ultra refrescante. O par perfeito com mel e frutas.</p>
+        <span class="card-preco">A partir de R$ 8,00</span>
+        <a href="cupuacu.html" class="btn-primary" style="width: 100%;">Ver Tamanhos</a>
+      </div>
+
+      <div class="promocao-card">
+        <img class="imagem-1" src="img/acai-cupuacu.png" alt="Casadinho Especial" onerror="this.src='https://images.unsplash.com/photo-1590301157890-4810ed352733?w=400&auto=format&fit=crop&q=80'">
+        <h3>Casadinho Especial</h3>
+        <p>Camadas intercaladas do roxo nobre do açaí e o creme aveludado de cupuaçu.</p>
+        <span class="card-preco">A partir de R$ 14,00</span>
+        <a href="acai.html" class="btn-primary" style="width: 100%;">Pedir Casadinho</a>
+      </div>
+    </section>
+
+    <!-- Benefícios -->
+    <section class="features-grid">
+      <div class="feature-item">
+        <i class="fa-solid fa-heart-pulse"></i>
+        <h4 style="font-weight: 700; margin-bottom: 0.5rem;">Antioxidante Natural</h4>
+        <p style="font-size: 0.88rem; color: var(--text-muted);">Rico em antocianinas que combatem os radicais livres e fortalecem o sistema imune.</p>
+      </div>
+      <div class="feature-item">
+        <i class="fa-solid fa-truck-fast"></i>
+        <h4 style="font-weight: 700; margin-bottom: 0.5rem;">Chega Geladinho</h4>
+        <p style="font-size: 0.88rem; color: var(--text-muted);">Embalagens térmicas especiais para você receber a sobremesa na consistência perfeita.</p>
+      </div>
+      <div class="feature-item">
+        <i class="fa-solid fa-thumbs-up"></i>
+        <h4 style="font-weight: 700; margin-bottom: 0.5rem;">Ingredientes Selecionados</h4>
+        <p style="font-size: 0.88rem; color: var(--text-muted);">Frutas frescas picadas diariamente e adicionais de marcas de primeira linha.</p>
+      </div>
+    </section>
+  </main>
+
+  <!-- Rodapé -->
+  <footer>
+    <div style="max-width: 1200px; margin: 0 auto; display: flex; flex-direction: column; align-items: center; gap: 1rem;">
+      <div class="logo">
+        <img src="img/logo.webp" alt="Logo Açaí Express" width="35" onerror="this.src='https://cdn-icons-png.flaticon.com/512/765/765610.png'">
+        <span>Açaí Express</span>
+      </div>
+      <p style="max-width: 500px; font-size: 0.9rem; color: rgba(255,255,255,0.7);">
+        Levando a autêntica refrescância amazônica até você. Aberto de Terça a Domingo, das 13h às 22h.
+      </p>
+      <div style="display: flex; gap: 1.5rem; font-size: 1.2rem; margin: 0.5rem 0;">
+        <a href="https://wa.me/5561986868686" target="_blank" style="color: var(--accent-gold);"><i class="fa-brands fa-whatsapp"></i></a>
+        <a href="https://github.com/GustaMtech/Acai-express" target="_blank" style="color: var(--accent-gold);"><i class="fa-brands fa-github"></i></a>
+        <a href="sobre.html" style="color: var(--accent-gold);"><i class="fa-solid fa-code"></i></a>
+      </div>
+      <p style="font-size: 0.85rem; color: rgba(255, 255, 255, 0.5);">
+        &copy; 2026 Açaí Express. Desenvolvido por Gustavo Marques Silva. Todos os direitos reservados.
+      </p>
+    </div>
+  </footer>
+
+  <!-- Scripts Interativos -->
+  <script>
+    let customOrder = {
+      base: 'Açaí Tradicional',
+      size: '350ml',
+      price: 10.00,
+      toppings: []
+    };
+
+    function selectBase(element, baseName) {
+      document.querySelectorAll('.option-grid:nth-of-type(1) .option-btn').forEach(btn => btn.classList.remove('selected'));
+      element.classList.add('selected');
+      customOrder.base = baseName;
+    }
+
+    function selectSize(element, sizeName, price) {
+      document.querySelectorAll('.option-grid:nth-of-type(2) .option-btn').forEach(btn => btn.classList.remove('selected'));
+      element.classList.add('selected');
+      customOrder.size = sizeName;
+      customOrder.price = price;
+      updateTotal();
+    }
+
+    function updateTotal() {
+      const checkedToppings = document.querySelectorAll('.toppings-grid input[type="checkbox"]:checked');
+      customOrder.toppings = Array.from(checkedToppings).map(cb => cb.value);
+      
+      document.getElementById('customTotalDisplay').innerText = `R$ ${customOrder.price.toFixed(2).replace('.', ',')}`;
+    }
+
+    function sendCustomOrder() {
+      const phone = "5561986868686";
+      let toppingsList = customOrder.toppings.length > 0 
+        ? customOrder.toppings.join(', ') 
+        : 'Nenhum adicional escolhido';
+
+      const message = ` Olá, Açaí Express! Gostaria de fazer um pedido personalizado pelo site:\n\n` +
+        ` *Base:* ${customOrder.base}\n` +
+        ` *Tamanho:* ${customOrder.size}\n` +
+        ` *Adicionais:* ${toppingsList}\n` +
+        ` *Total:* R$ ${customOrder.price.toFixed(2).replace('.', ',')}\n\n` +
+        `Como posso confirmar o pagamento e entrega?`;
+
+      window.open(`https://wa.me/${phone}?text=${encodeURIComponent(message)}`, '_blank');
+    }
+  </script>
 </body>
-
 </html>
