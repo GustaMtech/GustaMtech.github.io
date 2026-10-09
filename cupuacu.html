@@ -2,67 +2,137 @@
 <html lang="pt-BR">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Catálogo de Cupuaçu</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <link rel="stylesheet" href="css/style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Catálogo de Cupuaçu Puro e Cremoso - Açaí Express. Refrescância natural do norte brasileiro.">
+  <title>Catálogo de Cupuaçu | Açaí Express</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800;900&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  
+  <link rel="stylesheet" href="css/style.css">
+
+  <style>
+    .catalog-header-cupuacu {
+      background: linear-gradient(135deg, #3d1b06 0%, #8b5716 50%, var(--primary-color) 100%);
+      color: #fff;
+      padding: 3.5rem 1.5rem;
+      text-align: center;
+    }
+    .cupuacu-card-highlight {
+      background: #fdfaf3;
+      border: 1px solid #ebd9bf;
+    }
+  </style>
 </head>
 
 <body>
-    <header class="d-flex justify-content-between align-items-center p-3 bg-purple text-white">
-        <div class="logo d-flex align-items-center">
-            <img src="../img/logo.webp" alt="" width="100"> <span class="ml-2">Açaí Express</span>
-        </div>
-        <nav class="navbar">
-            <a class="nav-link text-white" href="index.html">Início</a>
-            <a class="nav-link text-white" href="acai.html">Catálogo de Açaí</a>
-            <a class="nav-link text-white" href="cupuacu.html">Catálogo de Cupuaçu</a>
-            <a class="nav-link text-white" href="sobre.html">Sobre Mim</a>
-        </nav>
-    </header>
+  <!-- Header -->
+  <header>
+    <div class="header-container">
+      <a href="index.html" class="logo">
+        <img src="img/logo.webp" alt="Logo Açaí Express" onerror="this.src='https://cdn-icons-png.flaticon.com/512/765/765610.png'">
+        <span>Açaí Express</span>
+      </a>
 
-    <main class=" p-5">
-        <h1 class="text-warning text-center"> Catálogo de Cupuaçu </h1>
-        <div class="row">
-            <div class="col-md-4 text-center">
-                <div class="card">
-                    <img src="img/cupuacu-tradicional.png">
-                    <div class="card-body">
-                        <h5 class="card-title"> Cupuaçu Tradicional 350ml </h5>
-                        <p class="card-text"> Adicionais: Granola, frutas, mel e leite ninho. </p>
-                        <p> Preço: R$ 8,00 </p>
-                    </div>
-                </div>
-            </div>
+      <nav class="navbar">
+        <a class="nav-link" href="index.html">Início</a>
+        <a class="nav-link" href="acai.html">Catálogo de Açaí</a>
+        <a class="nav-link active" href="cupuacu.html">Catálogo de Cupuaçu</a>
+        <a class="nav-link" href="sobre.html">Sobre Mim</a>
+      </nav>
+    </div>
+  </header>
 
-            <div class="col-md-4 text-center">
-                <div class="card">
-                    <img src="img/cupuacu-tradicional.png">
-                    <div class="card-body">
-                        <h5 class="card-title"> Cupuaçu Tradicional 500ml </h5>
-                        <p class="card-text"> Adicionais: Granola, frutas, mel e leite ninho. </p>
-                        <p> Preço: R$ 12,00 </p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4 text-center">
-                <div class="card">
-                    <img src="img/cupuacu-tradicional.png">
-                    <div class="card-body">
-                        <h5 class="card-title"> Cupuaçu Tradicional 750ml </h5>
-                        <p class="card-text"> Adicionais: Granola, frutas, mel e leite ninho. </p>
-                        <p> Preço: R$ 16,00 </p>
-                    </div>
-                </div>
-            
+  <main>
+    <section class="catalog-header-cupuacu">
+      <h1 style="font-family: var(--font-title); font-size: clamp(2rem, 4vw, 3rem); color: #ffe2a3;">
+        O Autêntico Creme de Cupuaçu
+      </h1>
+      <p style="max-width: 600px; margin: 0.5rem auto 0; color: rgba(255,255,255,0.9);">
+        Polpa 100% natural com aquele sabor inconfundível, textura aveludada e toque cítrico dos deuses.
+      </p>
+    </section>
 
-        </div>
-    </main>
+    <!-- Catálogo de Cupuaçu -->
+    <section class="promocoes">
+      <!-- Item 1: 350ml -->
+      <div class="card cupuacu-card-highlight">
+        <img class="imagem-1" src="img/cupuacu-tradicional.png" alt="Cupuaçu 350ml" onerror="this.src='https://receitanatureba.com/wp-content/uploads/2025/10/creme-de-cupuacu.jpg'">
+        <h3 class="card-title">Cupuaçu Tradicional 350ml</h3>
+        <p class="card-text"><strong>Acompanha:</strong> Granola crocante, frutas da estação, fio de mel de abelha e leite Ninho.</p>
+        <div class="card-preco">R$ 8,00</div>
+        <button class="btn-primary" onclick="addToCart('Cupuaçu Tradicional 350ml', 8.00)">
+          <i class="fa-solid fa-cart-plus"></i> Adicionar
+        </button>
+      </div>
 
-    <footer>
-        <p>&copy; 2024 Venda de Açaí e Cupuaçu. Todos os direitos reservados.</p>
-    </footer>
+      <!-- Item 2: 500ml -->
+      <div class="card cupuacu-card-highlight">
+        <img class="imagem-1" src="img/cupuacu-tradicional.png" alt="Cupuaçu 500ml" onerror="this.src='https://receitanatureba.com/wp-content/uploads/2025/10/creme-de-cupuacu.jpg'">
+        <h3 class="card-title">Cupuaçu Tradicional 500ml</h3>
+        <p class="card-text"><strong>Acompanha:</strong> Granola artesanal, morangos ou banana fresca, mel puro e leite Ninho duplo.</p>
+        <div class="card-preco">R$ 12,00</div>
+        <button class="btn-primary" onclick="addToCart('Cupuaçu Tradicional 500ml', 12.00)">
+          <i class="fa-solid fa-cart-plus"></i> Adicionar
+        </button>
+      </div>
+
+      <!-- Item 3: 750ml -->
+      <div class="card cupuacu-card-highlight">
+        <img class="imagem-1" src="img/cupuacu-tradicional.png" alt="Cupuaçu 750ml" onerror="this.src='https://receitanatureba.com/wp-content/uploads/2025/10/creme-de-cupuacu.jpg'">
+        <h3 class="card-title">Cupuaçu Tradicional 750ml</h3>
+        <p class="card-text"><strong>Para Apaixonados:</strong> Super porção de cupuaçu com castanhas, granola, frutas e muito leite em pó.</p>
+        <div class="card-preco">R$ 16,00</div>
+        <button class="btn-primary" onclick="addToCart('Cupuaçu Tradicional 750ml', 16.00)">
+          <i class="fa-solid fa-cart-plus"></i> Adicionar
+        </button>
+      </div>
+
+      <!-- Item 4: Cupuaçu com Trufa de Chocolate -->
+      <div class="card cupuacu-card-highlight">
+        <img class="imagem-1" src="img/cupuacu-tradicional.png" alt="Cupuaçu Trufado" onerror="this.src='https://receitanatureba.com/wp-content/uploads/2025/10/creme-de-cupuacu.jpg'">
+        <h3 class="card-title">Cupuaçu Trufado Gourmet 500ml</h3>
+        <p class="card-text"><strong>Contraste Irresistível:</strong> Borda recheada de ganache de chocolate meio amargo com o cítrico do cupuaçu.</p>
+        <div class="card-preco">R$ 18,00</div>
+        <button class="btn-primary" onclick="addToCart('Cupuaçu Trufado Gourmet 500ml', 18.00)">
+          <i class="fa-solid fa-cart-plus"></i> Adicionar
+        </button>
+      </div>
+    </section>
+
+    <!-- Curiosidade e Benefícios -->
+    <section class="especial" style="margin-bottom: 4rem;">
+      <h2 style="color: var(--accent-gold);">Por que o Cupuaçu é tão especial?</h2>
+      <p class="ultimo-paragrafo" style="margin-top: 1rem;">
+        Parente direto do cacau, o cupuaçu é rico em vitaminas A, B e C, além de minerais e fibras que auxiliam na digestão. 
+        Possui uma manteiga natural rica em ácidos graxos que deixa a sua textura cremosa sem precisar de emulsificantes industriais!
+      </p>
+    </section>
+  </main>
+
+  <!-- Rodapé -->
+  <footer>
+    <p>&copy; 2026 Açaí Express. Desenvolvido por Gustavo Marques Silva.</p>
+  </footer>
+
+  <script>
+    function addToCart(name, price) {
+      let cart = JSON.parse(localStorage.getItem('acai_express_cart')) || [];
+      const existing = cart.find(i => i.name === name);
+      if (existing) {
+        existing.quantity += 1;
+      } else {
+        cart.push({ name, price, quantity: 1 });
+      }
+      localStorage.setItem('acai_express_cart', JSON.stringify(cart));
+      
+      const phone = "5561986868686";
+      const message = ` Olá! Gostaria de pedir: *${name}* por R$ ${price.toFixed(2).replace('.', ',')}. Está disponível para entrega?`;
+      window.open(`https://wa.me/${phone}?text=${encodeURIComponent(message)}`, '_blank');
+    }
+  </script>
 </body>
-
 </html>
